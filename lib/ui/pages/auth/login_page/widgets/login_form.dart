@@ -47,7 +47,8 @@ class LoginForm extends ConsumerWidget {
                 );
                 print(_username.text);
                 print(_password.text);
-                ref.read(sessionProvider).login(loginReqDTO);
+                SessionUser user = ref.read(sessionProvider);
+                user.login(loginReqDTO);
               }
             },
           ),

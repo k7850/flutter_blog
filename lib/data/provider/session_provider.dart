@@ -28,7 +28,7 @@ class SessionUser {
 
   Future<void> join(JoinReqDTO joinReqDTO) async {
     // 1. 통신 코드
-    ResponseDTO responseDTO = await UserRepository().fetchJoin(joinReqDTO);
+    ResponseDTO responseDTO = await new UserRepository().fetchJoin(joinReqDTO);
 
     // 2. 비지니스 로직
     if (responseDTO.code == 1) {
@@ -44,7 +44,7 @@ class SessionUser {
 
   Future<void> login(LoginReqDTO loginReqDTO) async {
     // 1. 통신 : Repository 메소드를 호출하여 응답 결과 및 데이터 받음.
-    ResponseDTO responseDTO = await UserRepository().fetchLogin(loginReqDTO);
+    ResponseDTO responseDTO = await new UserRepository().fetchLogin(loginReqDTO);
 
     // 2. 비지니스 로직
     if (responseDTO.code == 1) {
@@ -93,5 +93,5 @@ class SessionUser {
 
 // 3. 창고 관리자
 final sessionProvider = Provider<SessionUser>((ref) {
-  return SessionUser();
+  return new SessionUser();
 });

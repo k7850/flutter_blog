@@ -12,7 +12,7 @@ class UserRepository {
   Future<ResponseDTO> fetchJoin(JoinReqDTO requestDTO) async {
     try {
       Response response = await dio.post("/join", data: requestDTO.toJson()); // await dio.http메서드타입("주소", data: 보낼객체.toJson());
-      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      ResponseDTO responseDTO = new ResponseDTO.fromJson(response.data);
 
       // Map타입을 유저타입으로 바꿔주기 (그래도 타입은 dynamic이니까 사용할때 as User 붙여서)
       // 필요할때만 쓰면 됨
@@ -21,7 +21,7 @@ class UserRepository {
       return responseDTO;
     } catch (e) {
       // 200이 아니면 catch로 감
-      return ResponseDTO(-1, "중복된 유저명입니다", null);
+      return new ResponseDTO(-1, "중복된 유저명입니다", null);
     }
   }
 
@@ -33,8 +33,8 @@ class UserRepository {
       Response response = await dio.post("/login", data: requestDTO.toJson());
 
       // 2. DTO 파싱
-      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
-      responseDTO.data = User.fromJson(responseDTO.data);
+      ResponseDTO responseDTO = new ResponseDTO.fromJson(response.data);
+      responseDTO.data = new User.fromJson(responseDTO.data);
 
       // 3. 토큰 받기
       List<String>? jwt = response.headers["Authorization"];
@@ -49,7 +49,7 @@ class UserRepository {
       return responseDTO;
     } catch (e) {
       // 200이 아니면 catch로 감
-      return ResponseDTO(-1, "유저네임 혹은 비번이 틀렸습니다", null);
+      return new ResponseDTO(-1, "유저네임 혹은 비번이 틀렸습니다", null);
     }
   }
 //
