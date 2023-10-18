@@ -43,12 +43,13 @@ class PostListViewModel extends StateNotifier<PostListModel?> {
 
     if (responseDTO.code == 1) {
       Post newPost = responseDTO.data as Post; // 1. dynamic(Post)
-      //
+
       // ResponseDTO response2DTO = await PostRepository().fetchPostList(sessionUser.jwt!);
       // state = PostListModel(posts: response2DTO.data);
 
       List<Post> newPosts = [newPost, ...state!.posts]; // 2. 기존 상태에 데이터 추가
       state = PostListModel(posts: newPosts); // 3. 뷰모델(창고) 데이터 갱신 -> watch 구독자 자동으로 리빌드됨
+      // 다만 글 작성 하는 중간에 다른 사람이 글을 적었다고 치면 그 글은 안보임
 
       Navigator.pop(mContext!);
     } else {
