@@ -10,7 +10,7 @@ class PostListBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    PostListPageModel? model = ref.watch(postListPageProvider); // 지속적 구독 // 실행되는 순간 창고관리자가 시작됨 // state==null로 시작함
+    PostListModel? model = ref.watch(postListProvider); // 지속적 구독 // 실행되는 순간 창고관리자가 시작됨 // state==null로 시작함
 
     List<Post> posts = [];
 
