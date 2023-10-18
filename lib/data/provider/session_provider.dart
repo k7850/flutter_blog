@@ -12,7 +12,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class SessionUser {
   // 화면 context에 접근하는 법. 글로벌키
   final mContext = navigatorKey.currentContext;
-
   User? user;
   String? jwt;
   bool isLogin; // jwt가 있어도 시간 만료됐을수도 있으니까 필요함
@@ -41,7 +40,7 @@ class SessionUser {
     }
   }
 
-  //
+//
 
   Future<void> login(LoginReqDTO loginReqDTO) async {
     // 1. 통신 : Repository 메소드를 호출하여 응답 결과 및 데이터 받음.
@@ -67,11 +66,22 @@ class SessionUser {
     }
   }
 
-  //
+//
 
-  //
+  // JWT는 로그아웃 할 때 서버로 요청할 필요가 없음.(어짜피 스테스리스로 서버에 정보가 없으니까)
+  Future<void> logout() async {
+    this.jwt = null;
+    this.isLogin = false;
+    this.user = null;
 
-  Future<void> logout() async {}
+    await secureStorage.delete(key: "jwt");
+    // await 없으면 삭제 전에 로그인페이지로 이동돼서 바로 다시 자동로그인 될 수 있음
+
+    // Navigator.popAndPushNamed(context, Move.loginPage);
+    Navigator.pushNamedAndRemoveUntil(mContext!, Move.loginPage, (route) => false);
+    // 로그아웃이니까 스택 쌓인거 싹 다 없애기
+  }
+
   // Future<void> update() async {}
 }
 
