@@ -1,10 +1,9 @@
-// 1. 창고 데이터
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/main.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/post_detail_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// 1. 창고 데이터
 class RequestParm {
   int? postDetailId;
   // int? commentId;
@@ -12,7 +11,7 @@ class RequestParm {
   RequestParm({this.postDetailId});
 }
 
-// 2. 창고
+// 2. 창고 (비지니스 로직)
 class ParamStore extends RequestParm {
   final mContext = navigatorKey.currentContext;
 

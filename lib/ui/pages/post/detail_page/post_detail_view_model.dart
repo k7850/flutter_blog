@@ -32,7 +32,7 @@ class PostDetailViewModel extends StateNotifier<PostDetailModel?> {
 // 3. 창고 관리자
 // family = 창고가 아니라, 창고 관리자에게 데이터 주는 방법
 
-// autoDispose : 안하면 싱글톤이라 똑같은 id만 뜬다
+//  싱글톤이라 autoDispose 안하면 똑같은 글만 뜬다
 final postDetailProvider = StateNotifierProvider.autoDispose<PostDetailViewModel, PostDetailModel?>((ref) {
   int postId = ref.read(paramProvider).postDetailId!;
   print("뷰모델postId : ${postId}");

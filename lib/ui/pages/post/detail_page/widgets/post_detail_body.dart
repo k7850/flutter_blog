@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blog/_core/constants/size.dart';
 import 'package:flutter_blog/data/model/post.dart';
+import 'package:flutter_blog/data/provider/session_provider.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/post_detail_view_model.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/widgets/post_detail_buttons.dart';
 import 'package:flutter_blog/ui/pages/post/detail_page/widgets/post_detail_content.dart';
@@ -18,7 +19,7 @@ class PostDetailBody extends ConsumerWidget {
     PostDetailModel? model = ref.watch(postDetailProvider);
 
     if (model == null) {
-      return Container(color: Colors.black);
+      return Center(child: CircularProgressIndicator());
     }
 
     Post post = model!.post;
@@ -30,7 +31,7 @@ class PostDetailBody extends ConsumerWidget {
           PostDetailTitle("${post.title}"),
           const SizedBox(height: largeGap),
           PostDetailProfile(user: post.user),
-          PostDetailButtons(),
+          (ref.read(sessionProvider).user!.id == post.user.id ? PostDetailButtons() : SizedBox()),
           const Divider(),
           const SizedBox(height: largeGap),
           PostDetailContent("${post.content}"),

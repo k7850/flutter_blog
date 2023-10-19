@@ -27,8 +27,6 @@ class PostListViewModel extends StateNotifier<PostListModel?> {
 
   // notify 구독자들에게 알려줌
   Future<void> notifyInit() async {
-    Logger().d("notifyInit");
-
     // jwt 가져오기
     SessionUser sessionUser = ref.read(sessionProvider);
 
