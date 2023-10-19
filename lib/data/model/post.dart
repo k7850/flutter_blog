@@ -34,4 +34,9 @@ class Post {
   String getUpdated() {
     return DateFormat.MMMd().format(updated);
   }
+
+  @override
+  String toString() {
+    return 'Post{id: $id, title: $title, content: $content, user: $user, created: $created, updated: $updated}';
+  }
 }

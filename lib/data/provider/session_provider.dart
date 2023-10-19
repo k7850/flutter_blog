@@ -22,10 +22,6 @@ class SessionUser {
     this.isLogin = false,
   });
 
-  //
-
-  //
-
   Future<void> join(JoinReqDTO joinReqDTO) async {
     // 1. 통신 코드
     ResponseDTO responseDTO = await new UserRepository().fetchJoin(joinReqDTO);
@@ -39,8 +35,6 @@ class SessionUser {
           .showSnackBar(SnackBar(content: Center(child: Text(responseDTO.msg))));
     }
   }
-
-//
 
   Future<void> login(LoginReqDTO loginReqDTO) async {
     // 1. 통신 : Repository 메소드를 호출하여 응답 결과 및 데이터 받음.
@@ -66,8 +60,6 @@ class SessionUser {
     }
   }
 
-//
-
   // JWT는 로그아웃 할 때 서버로 요청할 필요가 없음.(어짜피 스테스리스로 서버에 정보가 없으니까)
   Future<void> logout() async {
     this.jwt = null;
@@ -85,11 +77,7 @@ class SessionUser {
   // Future<void> update() async {}
 }
 
-//
-
 // 2. 창고  //그냥 뷰모델이면 창고 필요없음
-
-//
 
 // 3. 창고 관리자
 final sessionProvider = Provider<SessionUser>((ref) {
