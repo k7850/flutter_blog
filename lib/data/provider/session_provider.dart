@@ -42,7 +42,6 @@ class SessionUser {
 
     // 2. 비지니스 로직
     if (responseDTO.code == 1) {
-      print("if문시작");
       // 2-1. 토큰을 휴대폰에 저장
       await secureStorage.write(key: "jwt", value: responseDTO.token);
 
